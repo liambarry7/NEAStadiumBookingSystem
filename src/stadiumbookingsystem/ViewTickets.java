@@ -28,9 +28,9 @@ public class ViewTickets extends javax.swing.JFrame {
     public ViewTickets() {
         initComponents();
         
+//        fillPurchasedTicketTable();
         fillPurchasedTicketTable();
-        fillPurchasedTicketTable();
-//        sortNextEvent();
+        sortNextEvent();
         StadiumCreditRefundLabel.setText(0 + " credits");
     }
 
