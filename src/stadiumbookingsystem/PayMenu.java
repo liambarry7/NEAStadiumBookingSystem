@@ -226,7 +226,7 @@ public class PayMenu extends javax.swing.JFrame {
         emptyFinalTickets();
         ChooseSeat.emptySelectedTickets();
         UpcomingEvents ue = new UpcomingEvents();
-        ue.setSize(900, 550);
+        ue.setSize(1000, 550);
         ue.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
