@@ -13,12 +13,6 @@ public class StadiumBookingSystem {
         // - add more comments
         // - remove unnecessary print lines and commented code
         
-        //NOTES:
-        //EMAIL CANNOT BE USED FOR MORE THAN ONE ACCOUNT
-        //CARD NUMBER CANNOT BE USED FOR MORE THAN ONE ACCOUNT
-        //make it so floor tickets can be bought
-        //add sorts for different types of events 
-        
 
 
         createLoginScreen();
