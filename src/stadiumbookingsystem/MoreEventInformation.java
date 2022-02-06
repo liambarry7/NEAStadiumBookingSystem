@@ -210,7 +210,6 @@ public class MoreEventInformation extends javax.swing.JFrame {
     }
     
     public void loadData() {
-//        System.out.println(currentEvent.getEventName());
         EventName.setText(currentEvent.getEventName());
         EventTime.setText(currentEvent.getEventTime());
         EventDate.setText(currentEvent.getEventDate());
@@ -219,7 +218,6 @@ public class MoreEventInformation extends javax.swing.JFrame {
         EventType.setText(currentEvent.getEventType());
         EventBand.setText(Integer.toString(currentEvent.getEventBand()));
         EventDesc.setText(currentEvent.getEventDiscription());
-//        System.out.println(currentEvent);
     }
     
     /**

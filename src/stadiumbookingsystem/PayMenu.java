@@ -306,12 +306,7 @@ public class PayMenu extends javax.swing.JFrame {
         
             ticketList.add(finalTicket);
         }
-        
-        
-        
-//        for (int i = 0; i < ticketList.size(); i++) {
-//            System.out.println(ticketList.get(i));
-//        }
+
     }
     
     public static void emptyFinalTickets() {

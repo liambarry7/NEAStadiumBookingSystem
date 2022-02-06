@@ -23,28 +23,6 @@ public class StadiumBookingSystem {
 
         createLoginScreen();
         
-//        databaseSQL.getAllAccounts();
-        
-        
-        
-//        databaseSQL.getAllPayments();
-        
-//        databaseSQL.removeAccount(7);
-        
-
-        
-        
-        
-        
-        
-          
-          
-//        //Making the window fit the screen
-//        Toolkit tk = Toolkit.getDefaultToolkit();
-//        int xSize = (int)tk.getScreenSize().getWidth();
-//        int ySize = (int)tk.getScreenSize().getHeight();
-//        System.out.println(xSize + " " + ySize);
-
 
 
     }

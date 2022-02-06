@@ -28,7 +28,6 @@ public class ViewTickets extends javax.swing.JFrame {
     public ViewTickets() {
         initComponents();
         
-//        fillPurchasedTicketTable();
         fillPurchasedTicketTable();
         sortNextEvent();
         StadiumCreditRefundLabel.setText(0 + " credits");
@@ -215,9 +214,7 @@ public class ViewTickets extends javax.swing.JFrame {
 
         //get current value of stadium credit for account
         int sc = databaseSQL.getCurrentUser().getStadiumCredit();
-//        System.out.println(sc);
         int newSC = sc + ticketRefund;
-//        System.out.println(newSC);
         
         databaseSQL.updateAccountStadiumCredit(accountID, newSC); //update stadium credit value in database
         databaseSQL.resetCurrentUser(accountID); //refresh current user to have updated attributes
@@ -262,13 +259,10 @@ public class ViewTickets extends javax.swing.JFrame {
         ArrayList<String> ticketNames = new ArrayList<>(); // arraylist used to sort ticket neames into order
 
         for (int i = 0; i < userTickets.size(); i++) {
-//            System.out.println("ticket number " + userTickets.get(i).getEventId());
             for (int j = 0; j < eventsList.size(); j++) {
-//                System.out.println("Event number e " + eventsList.get(j).getEventID());
                 //if ticket id i matches event id, add to ticket names list to be sorted
                 if (userTickets.get(i).getEventId() == eventsList.get(j).getEventID()) {
                     ticketNames.add(eventsList.get(j).getEventName());
-//                    System.out.println("added");
                 }                
             }                   
         }
@@ -362,13 +356,11 @@ public class ViewTickets extends javax.swing.JFrame {
         ArrayList<String> ticketNames = new ArrayList<>(); // arraylist used to sort ticket neames into order
 
         for (int i = 0; i < userTickets.size(); i++) {
-//            System.out.println("ticket number " + userTickets.get(i).getEventId());
             for (int j = 0; j < eventsList.size(); j++) {
-//                System.out.println("Event number e " + eventsList.get(j).getEventID());
+
                 //if ticket id i matches event id, add to ticket names list to be sorted
                 if (userTickets.get(i).getEventId() == eventsList.get(j).getEventID()) {
                     ticketNames.add(eventsList.get(j).getEventName());
-//                    System.out.println("added");
                 }                
             }                   
         }
@@ -464,7 +456,6 @@ public class ViewTickets extends javax.swing.JFrame {
             //gets ticket dates and adds them to array to be sorted
             for (int i = 0; i < tableSize; i++) {
                 stringDateList[i] = (String) PurchasedTicketTable.getValueAt(i, 6);
-//                System.out.println(stringDateList[i]);
             }
             
             Date[] dateList = new Date[stringDateList.length];
@@ -563,54 +554,52 @@ public class ViewTickets extends javax.swing.JFrame {
     }
     
     public void sortReverseNextEvent() {
-                try {
+        try {
             int tableSize = PurchasedTicketTable.getRowCount();
             String[] stringDateList = new String[tableSize];
-            
+
             //gets ticket dates and adds them to array to be sorted
             for (int i = 0; i < tableSize; i++) {
                 stringDateList[i] = (String) PurchasedTicketTable.getValueAt(i, 6);
-//                System.out.println(stringDateList[i]);
             }
-            
+
             Date[] dateList = new Date[stringDateList.length];
-            
+
             //turning string date into date onject to be sorted
             for (int i = 0; i < dateList.length; i++) {
                 String date = stringDateList[i];
                 Date formatDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
                 dateList[i] = formatDate;
             }
-            
+
             sortsAndSearches.dateBubbleSort(dateList); //sorts date into chronological order
-            
+
             //turns sorted date objects back into strings
             DateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0; i < dateList.length; i++) {
                 Date sortedDate = dateList[i];
                 String reformattedDate = newFormat.format(sortedDate);
                 stringDateList[i] = reformattedDate;
-//                System.out.println(i);
             }
-            
+
             int accountID = databaseSQL.getCurrentUser().getAccountID();
             ArrayList<ticket> userTicketList = databaseSQL.getUserPurchasedTickets(accountID);
             ArrayList<event> eventList = databaseSQL.getEvents();
             ArrayList<ticket> soonestTickets = new ArrayList<>();
-            
+
             for (int i = 0; i < stringDateList.length; i++) {
                 for (int j = 0; j < eventList.size(); j++) {
 
                     String eventDate = eventList.get(j).getEventDate();
-                    
+
                     //if the event date matches the tickets date...
                     if (eventDate.equals(stringDateList[i])) {
                         int eventID = eventList.get(j).getEventID();
 
                         for (int k = 0; k < userTicketList.size(); k++) {
                             //if the event IDs match, add ticket into sorted list
-                            if (userTicketList.get(k).getEventId() == eventID) { 
-                                
+                            if (userTicketList.get(k).getEventId() == eventID) {
+
                                 if (soonestTickets.size() == 0) {
                                     soonestTickets.add(userTicketList.get(k));
                                 } else if (soonestTickets.contains(userTicketList.get(k))) {
@@ -623,20 +612,20 @@ public class ViewTickets extends javax.swing.JFrame {
                         }
 
                     }
-                    
+
                 }
             }
-            
+
             //converting ArrayList into array to be manipulated
             ticket[] sortedSoonestTickets = soonestTickets.toArray(new ticket[0]);
-            
+
             sortsAndSearches.ticketReverseArray(sortedSoonestTickets); //using a stack to reverse the array
 
             ArrayList<ticket> reverseTicketDate = new ArrayList<>();
-            
-                    for (int i = 0; i < sortedSoonestTickets.length; i++) {
-                        reverseTicketDate.add(sortedSoonestTickets[i]);                        
-                    }
+
+            for (int i = 0; i < sortedSoonestTickets.length; i++) {
+                reverseTicketDate.add(sortedSoonestTickets[i]);
+            }
 
             emptyPurchasedTicketTable(); //removing everyrow from the table
             ArrayList<event> events = databaseSQL.getEvents();
@@ -673,7 +662,7 @@ public class ViewTickets extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Error sorting tickets into date order: " + e);
         }
-    
+
     }
     
     public void emptyPurchasedTicketTable() {

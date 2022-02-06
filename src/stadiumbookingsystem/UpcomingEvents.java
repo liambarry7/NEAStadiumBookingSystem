@@ -26,17 +26,12 @@ public class UpcomingEvents extends javax.swing.JFrame {
      */
     public UpcomingEvents() {
         initComponents();
-        
-        //claret - [127,23,52]
+
         
         //displays events in A-Z order as defult
         sortAZ();
        
-//        purchaseController();
-        
-        
-        
-        //https://mkyong.com/java/java-get-keys-from-value-hashmap/
+
         }
     
 
@@ -425,10 +420,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
     public void sortAZ() {
         //gets all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
-        
-//        for (int i = 0; i < eventsList.size(); i++) {
-//            System.out.println(eventsList.get(i));
-//        }
+
         
         //create arraylist for eventnames to be used for comparing later
         ArrayList<String> eventNames = new ArrayList<>();          
@@ -438,16 +430,13 @@ public class UpcomingEvents extends javax.swing.JFrame {
             eventNames.add(eventsList.get(i).getEventName());
         }
         
-//        System.out.println("ArrayList: " + eventNames);
+
         
         //make array from array list to be used for sorting:
         String[] sortedEventNames = eventNames.toArray(new String[0]);
 
         //sort array list into alphabetical order (A-Z) using a merge sort
         library.sortsAndSearches.stringMergeSort(sortedEventNames);
-//        System.out.println(Arrays.toString(sortedEventNames));
-        
-        
         
         ArrayList<event> eventsAZ = new ArrayList<>(); //sorted object list of events in A-Z order        
      
@@ -459,11 +448,6 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }
             }
         }
-        
-//        for (int i = 0; i < eventsAZ.size(); i++) {
-//            System.out.println(eventsAZ.get(i));
-//            
-//        }
         
         //Assigning gui elements to object details
         NameOne.setText(eventsAZ.get(0).getEventName());
@@ -532,11 +516,6 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }                
             } 
         }
-        
-        
-//        for (int i = 0; i < eventsZA.size(); i++) {
-//            System.out.println(eventsZA.get(i)); 
-//        }
 
         //Assigning gui elements to object details
         NameOne.setText(eventsZA.get(0).getEventName());
@@ -794,20 +773,14 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 String date = stringDateList[i];
                 Date formatDate = new SimpleDateFormat("dd/MM/yyyy").parse(date); //convert string date into Date date              
                 dateList[i] = formatDate; //add formatted date into Date list                
-//                System.out.println("old date: " + date + " new date: " + formatDate);
             }
 
-//            for (int i = 0; i < dateList.length; i++) {
-//                System.out.println(dateList[i]);                
-//            }
+
             System.out.println(" ");
 
             //sort dates into date order
             sortsAndSearches.dateBubbleSort(dateList);
 
-//            for (int i = 0; i < dateList.length; i++) {
-//                System.out.println(dateList[i]);                
-//            }
             //turn converted dates back into strings
             DateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0; i < dateList.length; i++) {
@@ -816,9 +789,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 stringDateList[i] = reformattedDate;
             }
 
-//            for (int i = 0; i < stringDateList.length; i++) {
-//                System.out.println(stringDateList[i]);
-//            }
+
             ArrayList<event> eventList = databaseSQL.getEvents();
             ArrayList<event> eventsSoonest = new ArrayList<>();
 
@@ -835,7 +806,6 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }
             }
 
-//            System.out.println(eventsSoonest.toString());
             NameOne.setText(eventsSoonest.get(0).getEventName());
             String ticketCap1 = Integer.toString(eventsSoonest.get(0).getRemainingTickets());
             TicketNumberOne.setText(ticketCap1);
@@ -891,12 +861,9 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 String date = stringDateList[i];
                 Date formatDate = new SimpleDateFormat("dd/MM/yyyy").parse(date); //convert string date into Date date              
                 dateList[i] = formatDate; //add formatted date into Date list                
-//                System.out.println("old date: " + date + " new date: " + formatDate);
             }
 
-//            for (int i = 0; i < dateList.length; i++) {
-//                System.out.println(dateList[i]);                
-//            }
+
             System.out.println(" ");
 
             //sort dates into date order
@@ -905,9 +872,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //use stack to reverse the date order (furthest first, soonest last)
             sortsAndSearches.dateReverseArray(dateList);
 
-//            for (int i = 0; i < dateList.length; i++) {
-//                System.out.println(dateList[i]);                
-//            }
+
             //turn converted dates back into strings
             DateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0; i < dateList.length; i++) {
@@ -916,9 +881,6 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 stringDateList[i] = reformattedDate;
             }
 
-//            for (int i = 0; i < stringDateList.length; i++) {
-//                System.out.println(stringDateList[i]);
-//            }
             ArrayList<event> eventList = databaseSQL.getEvents();
             ArrayList<event> eventsFurthest = new ArrayList<>();
 
@@ -935,7 +897,6 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }
             }
 
-//            System.out.println(eventsFurthest.toString());
             NameOne.setText(eventsFurthest.get(0).getEventName());
             String ticketCap1 = Integer.toString(eventsFurthest.get(0).getRemainingTickets());
             TicketNumberOne.setText(ticketCap1);
@@ -1051,7 +1012,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
     }//GEN-LAST:event_MoreInformationTwoActionPerformed
 
     private void MoreInformationThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreInformationThreeActionPerformed
-                //gets all events from database and put them into an arraylist
+        //gets all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
 
         for (int i = 0; i < eventsList.size(); i++) {

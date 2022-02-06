@@ -286,7 +286,6 @@ public class NewPaymentMethod extends javax.swing.JFrame {
 
             payment newPaymentMethod = new payment(paymentID, accountID, cardHolder, cardNumber, exMonth, exYear, hashSecNo);
             
-            //System.out.println("a");
             
             System.out.println(newPaymentMethod.toString());
             
@@ -301,22 +300,6 @@ public class NewPaymentMethod extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Error when adding new payment: " + e);
         }
-        
-//        
-//        //Adding new payment method to database
-//        int accountID = databaseSQL.getCurrentUser().getAccountID();
-//        
-//        //geting paymentID
-//        //fix parametered method
-//        int paymentID = databaseSQL.getMaxPaymentNumber();
-//        String cardHolder = CardHolderNameField.getText();
-//        String CardNumber = CardNumberField.getText();//check its in the right format
-//        
-//        //turn month and year into integers
-//        String exMonth = MonthField.getSelectedItem().toString(); //gets object from drop down box and turns it into a string
-//        
-//        
-//        //get security number as an int (julie question) and then hash it
         
     }//GEN-LAST:event_AddButtonActionPerformed
 

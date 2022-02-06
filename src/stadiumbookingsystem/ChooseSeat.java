@@ -1472,14 +1472,6 @@ public class ChooseSeat extends javax.swing.JFrame {
 
     public void setUpStand() {
         StandLabel.setText(BuyTickets.selectedStand);
-        
-        //setting seats to be 
-        //red if taken - make button unpressable
-        //blue is available - [0, 153, 255]
-        //green if selected - [51,255,51]
-
-
-
     }
     
     

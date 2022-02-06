@@ -169,7 +169,6 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
             }
         }
         
-//        System.out.println(paymentID); 
         
         if(paymentID == -1) { //cannot have -1 paymentID so this is stops the system from crashing 
             System.out.println("Failed to find paymentID.");
@@ -199,7 +198,6 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
             String cn = list.get(i).getCardNumber();
             String em = list.get(i).getExpirationMonth();
             String ey = list.get(i).getExpirationYear();
-            //System.out.println("details:" + chn + " " + cn + " " + em  + " " + ey);
 
             String data[] = {chn, cn, em, ey}; //creates string of payment details to be put into table
             tblModel.addRow(data); //adds string of data into table            

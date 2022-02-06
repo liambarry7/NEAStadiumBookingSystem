@@ -223,7 +223,7 @@ public class SignUp extends javax.swing.JFrame {
     private void CreateAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountButtonActionPerformed
         try {
             
-            //change to have regular expressions
+          
             
             
             //sets value of textfeild to a variable that can be called.

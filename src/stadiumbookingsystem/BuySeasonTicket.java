@@ -1854,7 +1854,6 @@ public class BuySeasonTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_StandSelectorActionPerformed
 
     public void fillBookedSeats(JButton seat) {
-//        System.out.println("Change seat colours to show different stand's booked season tickets");
         ArrayList<seasonTicket> allST = databaseSQL.getAllST();
         
         for (int i = 0; i < allST.size(); i++) {
@@ -1878,7 +1877,6 @@ public class BuySeasonTicket extends javax.swing.JFrame {
                 }
 
             } else if (!selectedStand.equals(ticketStand)) {
-//                System.out.println("suii");
                 seat.setBackground(new Color(0, 153, 255)); //set colour to blue so seat can be chosen
                 seat.setEnabled(true); //button can be clicked 
                 //set seatcounter to 0 incase a selected seat becomes unclickable so that user can select new seat

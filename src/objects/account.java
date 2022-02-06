@@ -86,59 +86,7 @@ public class account {
 
     public int getStadiumCredit() {
         return stadiumCredit;
-    }
-
-    
-
-//    public void setAccountID(int accountID) {
-//        this.accountID = accountID;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-//
-//    public void setPhoneNo(String phoneNo) {
-//        this.phoneNo = phoneNo;
-//    }
-//
-//    public void setAddressOne(String addressOne) {
-//        this.addressOne = addressOne;
-//    }
-//
-//    public void setAddressTwo(String addressTwo) {
-//        this.addressTwo = addressTwo;
-//    }
-//
-//    public void setCity(String city) {
-//        this.city = city;
-//    }
-//
-//    public void setPostCode(String postCode) {
-//        this.postCode = postCode;
-//    }
-//
-//    public void setMembership(String membership) {
-//        this.membership = membership;
-//    }
-//
-//    public void setStadiumCredit(int stadiumCredit) {
-//        this.stadiumCredit = stadiumCredit;
-//    }
-
-    
+    }   
 
     
 }
