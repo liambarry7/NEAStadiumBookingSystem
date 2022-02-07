@@ -420,7 +420,11 @@ public class UpcomingEvents extends javax.swing.JFrame {
     public void sortAZ() {
         //gets all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
-
+        System.out.println("Events before sort:");
+        for (int i = 0; i < eventsList.size(); i++) {
+            System.out.println(eventsList.get(i));            
+        }
+        System.out.println("");
         
         //create arraylist for eventnames to be used for comparing later
         ArrayList<String> eventNames = new ArrayList<>();          
@@ -447,6 +451,11 @@ public class UpcomingEvents extends javax.swing.JFrame {
                     eventsAZ.add(eventsList.get(j));
                 }
             }
+        }
+        
+        System.out.println("Events after merge sort:");
+        for (int i = 0; i < eventsAZ.size(); i++) {
+            System.out.println(eventsAZ.get(i));            
         }
         
         //Assigning gui elements to object details
@@ -487,7 +496,11 @@ public class UpcomingEvents extends javax.swing.JFrame {
     public void sortZA() {
         //get all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
-        
+        System.out.println("Events before sort:");
+        for (int i = 0; i < eventsList.size(); i++) {
+            System.out.println(eventsList.get(i));            
+        }
+        System.out.println("");
         //create arraylist for eventnames to be used for comparing later
         ArrayList<String> eventNames = new ArrayList<>();
         
@@ -515,6 +528,11 @@ public class UpcomingEvents extends javax.swing.JFrame {
                     eventsZA.add(eventsList.get(j));
                 }                
             } 
+        }
+        
+        System.out.println("Events after merge sort:");
+        for (int i = 0; i < eventsZA.size(); i++) {
+            System.out.println(eventsZA.get(i));            
         }
 
         //Assigning gui elements to object details
@@ -564,7 +582,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //converts string date into Date object
             Date formattedCurrentDate = new SimpleDateFormat("dd/MM/yyyy").parse(currentDate);
             
-            System.out.println(formattedCurrentDate);
+            System.out.println("\nTodays date: " + formattedCurrentDate);
             
             //setting buy tickets buttons to true or false depending on whether the date is within a certain time frame
             dateRow1(membershipStatus, formattedCurrentDate);
@@ -589,7 +607,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-            System.out.println(numberOfDays);
+//            System.out.println(numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
@@ -624,7 +642,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-            System.out.println(numberOfDays);
+//            System.out.println(numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
@@ -659,7 +677,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-            System.out.println(numberOfDays);
+//            System.out.println(numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
@@ -694,7 +712,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-            System.out.println(numberOfDays);
+//            System.out.println(numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
@@ -729,7 +747,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-            System.out.println(numberOfDays);
+//            System.out.println(numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
@@ -758,6 +776,8 @@ public class UpcomingEvents extends javax.swing.JFrame {
     
     public void dateOrder() {
         try {
+            
+            
             String[] stringDateList = new String[5];
 
             stringDateList[0] = DateOne.getText();
@@ -791,6 +811,12 @@ public class UpcomingEvents extends javax.swing.JFrame {
 
 
             ArrayList<event> eventList = databaseSQL.getEvents();
+            System.out.println("Events before sort:");
+            for (int i = 0; i < eventList.size(); i++) {
+                System.out.println(eventList.get(i));
+            }
+            System.out.println("");
+            
             ArrayList<event> eventsSoonest = new ArrayList<>();
 
             //searches through eventsList until dates match, then adds matching event into eventsSoonest arraylist
@@ -805,6 +831,12 @@ public class UpcomingEvents extends javax.swing.JFrame {
 
                 }
             }
+            
+            System.out.println("Events after bubble sort:");
+            for (int i = 0; i < eventsSoonest.size(); i++) {
+                System.out.println(eventsSoonest.get(i));
+            }
+            
 
             NameOne.setText(eventsSoonest.get(0).getEventName());
             String ticketCap1 = Integer.toString(eventsSoonest.get(0).getRemainingTickets());
@@ -882,6 +914,12 @@ public class UpcomingEvents extends javax.swing.JFrame {
             }
 
             ArrayList<event> eventList = databaseSQL.getEvents();
+            System.out.println("Events before sort:");
+            for (int i = 0; i < eventList.size(); i++) {
+                System.out.println(eventList.get(i));
+            }
+            System.out.println("");
+            
             ArrayList<event> eventsFurthest = new ArrayList<>();
 
             //searches through eventsList until dates match, then adds matching event into eventsFurthest arraylist
@@ -895,6 +933,11 @@ public class UpcomingEvents extends javax.swing.JFrame {
                     }
 
                 }
+            } 
+            
+            System.out.println("Events after bubble sort:");
+            for (int i = 0; i < eventsFurthest.size(); i++) {
+                System.out.println(eventsFurthest.get(i));
             }
 
             NameOne.setText(eventsFurthest.get(0).getEventName());

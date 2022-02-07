@@ -494,17 +494,11 @@ public class EditAccount extends javax.swing.JFrame {
     private void DeleteAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAccountButtonActionPerformed
         
         //remove all data from database concering the deleted account
-        //user must enter password to delete account
-        //work out what to do with users tickets
         if (DeleteConfirmBox.isSelected()) {
             int accountID = databaseSQL.getCurrentUser().getAccountID();
-            System.out.println("payment");
             databaseSQL.deleteAccountPaymentMethods(accountID);
-            System.out.println("account");
             databaseSQL.deleteAccount(accountID);
-            System.out.println("ticket");
             databaseSQL.deleteTickets(accountID);
-            System.out.println("st");
             databaseSQL.deleteST(accountID);
             this.dispose();
             JOptionPane.showMessageDialog(null, "Account Deleted.");

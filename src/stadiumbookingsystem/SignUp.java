@@ -370,9 +370,8 @@ public class SignUp extends javax.swing.JFrame {
                 
                 
                 
-                
+                System.out.println("Password before hashing: " + PasswordField.getText());
                 String hashedPassword = hashing.hasher(PasswordField.getText());
-                System.out.println(hashedPassword);
                 
                 String membership = "not a member";
                 int stadiumCredit = 0;

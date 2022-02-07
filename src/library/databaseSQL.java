@@ -135,7 +135,9 @@ public class databaseSQL {
             }
             
             //hash loginPassword to be used to compare against the hashed database password
+            System.out.println("Password from database: " + userPassword);
             String hashLoginPassword = hashing.hasher(loginPassword);
+            System.out.println("Login hashed password: " + hashLoginPassword);
             
             if (loginEmail.equals(userEmail) && hashLoginPassword.equals(userPassword)) { //if the login details and the record match, return true (meaning user can log in)
                 rs.close();

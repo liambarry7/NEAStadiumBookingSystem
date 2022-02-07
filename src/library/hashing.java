@@ -26,7 +26,7 @@ public class hashing {
             }
             
             password = sb.toString();
-            System.out.println("Hashed password: " + password);
+            System.out.println("Hashed value: " + password);
         } catch (Exception e) {
             System.out.println("Error in hashing password: " + e);
         }
