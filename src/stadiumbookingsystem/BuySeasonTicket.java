@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import library.databaseSQL;
+import objects.event;
 import objects.payment;
 import objects.seasonTicket;
 
@@ -1866,6 +1867,7 @@ public class BuySeasonTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_PaymentSelecterComponentRemoved
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        seatCounter = 0;
         Membership mp = new Membership();
         mp.setSize(370, 390);
         mp.setVisible(true);
@@ -2033,7 +2035,10 @@ public class BuySeasonTicket extends javax.swing.JFrame {
                     seasonTicket st = new seasonTicket(stID, accountID, stand, seat, price, age, expirationDate);
 
                     databaseSQL.addSeasonTicket(st);
-
+                    
+                    //updating remaining seats for events
+                    updateRemainingSeats();
+                            
                     //fix remaining seats
                     Membership mp = new Membership();
                     mp.setSize(370, 390);
@@ -2046,10 +2051,22 @@ public class BuySeasonTicket extends javax.swing.JFrame {
             
         } else if (seat.equals("")) {
             SelectSeatLabel.setVisible(true);
+            ConfirmError.setVisible(false);
+            PaymentError.setVisible(false);
         }
 
     }//GEN-LAST:event_BuyButtonActionPerformed
 
+    public void updateRemainingSeats(){
+        ArrayList<event> eventsList = databaseSQL.getEvents();
+        
+        //looping through each event and removing a ticket from each database
+        for (int i = 0; i < eventsList.size(); i++) {
+            int remainingTickets = eventsList.get(i).getRemainingTickets() - 1;
+            databaseSQL.updateRemainingSeats(i+1, remainingTickets);
+        }
+    }
+    
     private void StandSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StandSelectorItemStateChanged
         
     }//GEN-LAST:event_StandSelectorItemStateChanged

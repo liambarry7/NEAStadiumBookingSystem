@@ -40,6 +40,7 @@
                               <Component id="AddButton" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="527" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" pref="456" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -54,7 +55,9 @@
               <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="147" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="AddButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="BackButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -149,6 +152,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoveButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select payment method in table and click &apos;Remove&apos; to delete it from the system."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -42,6 +42,7 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         PaymentTable = new javax.swing.JTable();
         RemoveButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +95,8 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Select payment method in table and click 'Remove' to delete it from the system.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +115,8 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
                                 .addComponent(RemoveButton)
                                 .addGap(58, 58, 58)
                                 .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,7 +126,9 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,34 +153,42 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
-        int userID = databaseSQL.getCurrentUser().getAccountID(); //gets users accountID to be used in the sql search
-        ArrayList<payment> list = databaseSQL.getPaymentMethods(userID); //creates arrayList with ausers saved payment methods
-        
-        //look through list to find matching card numbers to get the paymentID
-        int paymentID = -1;
-        
-        String selectedCardNumber = (String) PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1); //gets value of second column from selected (clicked) row
-        
-        for (int i = 0; i < list.size(); i++) {
-            String searchCN = list.get(i).getCardNumber();
-            if (searchCN.equals(selectedCardNumber)) {
-                paymentID = list.get(i).getPaymentID(); //gets paymentID for selectedCardNumber
-                i = list.size(); //make i size of list so that for loop ends as cardnumber has been found
+        try {
+            int userID = databaseSQL.getCurrentUser().getAccountID(); //gets users accountID to be used in the sql search
+            ArrayList<payment> list = databaseSQL.getPaymentMethods(userID); //creates arrayList with ausers saved payment methods
+
+            //look through list to find matching card numbers to get the paymentID
+            int paymentID = -1;
+
+            String selectedCardNumber = (String) PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1); //gets value of second column from selected (clicked) row
+
+            for (int i = 0; i < list.size(); i++) {
+                String searchCN = list.get(i).getCardNumber();
+                if (searchCN.equals(selectedCardNumber)) {
+                    paymentID = list.get(i).getPaymentID(); //gets paymentID for selectedCardNumber
+                    i = list.size(); //make i size of list so that for loop ends as cardnumber has been found
+                }
             }
+
+            if (paymentID == -1) { //cannot have -1 paymentID so this is stops the system from crashing 
+                System.out.println("Failed to find paymentID.");
+            } else {
+                databaseSQL.removePaymentMethod(paymentID, selectedCardNumber);
+            }
+
+            //updates table to show removed payment method is gone by closing the window and reloading it
+            AccountPaymentMethods apm = new AccountPaymentMethods();
+            apm.setSize(683, 390);
+            apm.setVisible(true);
+            this.dispose();
+            
+        } catch (Exception e) {
+            System.out.println("\nError in removing payment method.");
+            System.out.println("Please make sure there is a payment method selected in the table");
+            System.out.println(e);
         }
-        
-        if(paymentID == -1) { //cannot have -1 paymentID so this is stops the system from crashing 
-            System.out.println("Failed to find paymentID.");
-        } else {
-            databaseSQL.removePaymentMethod(paymentID, selectedCardNumber);
-        }
-        
-        //updates table to show removed payment method is gone by closing the window and reloading it
-        AccountPaymentMethods apm = new AccountPaymentMethods();
-        apm.setSize(683, 390);
-        apm.setVisible(true);
-        this.dispose();
-        
+
+
     }//GEN-LAST:event_RemoveButtonActionPerformed
 
     private void fillTable() {        
@@ -184,7 +198,11 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
         int userID = databaseSQL.getCurrentUser().getAccountID(); //gets users accountID to be used in the sql search
         ArrayList<payment> list = databaseSQL.getPaymentMethods(userID); //creates arrayList with ausers saved payment methods
 
-        System.out.println("\nUser's payment methods: ");
+        if (list.size() != 0) {
+            System.out.println("\nUser's payment methods: ");
+        }
+        
+        
         for (int i = 0; i < list.size(); i++) { //loops through every object in list and adds the details into the table
             System.out.println(list.get(i));
             String chn = list.get(i).getCardHolderName();
@@ -238,6 +256,7 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
     private javax.swing.JTable PaymentTable;
     private javax.swing.JButton RemoveButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

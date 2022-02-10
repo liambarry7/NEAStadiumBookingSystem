@@ -107,7 +107,7 @@ public class ViewTickets extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel2.setText("Select ticket to view the amount of stadium credit given when refunded.");
+        jLabel2.setText("Select ticket to view the amount of stadium credit given when refunded. Click 'Refund Ticket' to get a refund after ticket has been selected.");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel3.setText("Stadium Credit refund:");
@@ -141,15 +141,18 @@ public class ViewTickets extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(StadiumCreditRefundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BackButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 554, Short.MAX_VALUE)
-                                .addComponent(RefundButton))))
+                                .addComponent(RefundButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(StadiumCreditRefundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -197,33 +200,62 @@ public class ViewTickets extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void RefundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefundButtonActionPerformed
-        int accountID = databaseSQL.getCurrentUser().getAccountID();
-        
-        //cast object to integer
-        String selectedTicket = (String) PurchasedTicketTable.getValueAt(PurchasedTicketTable.getSelectedRow(), 5);
+        try {
+            //adding back the refunded ticket to have the correct number of remaining tickets for event
+            String eventName = (String) PurchasedTicketTable.getValueAt(PurchasedTicketTable.getSelectedRow(), 0);
+            addingBackTicketToEvent(eventName);
+            
+            int accountID = databaseSQL.getCurrentUser().getAccountID();
 
-        int ticketID = Integer.parseInt(selectedTicket);
-        databaseSQL.refundTicket(accountID, ticketID);
-        
-        //give user stadium credit for refunded ticket
-        String refundCredits = StadiumCreditRefundLabel.getText();
+            //cast object to integer
+            String selectedTicket = (String) PurchasedTicketTable.getValueAt(PurchasedTicketTable.getSelectedRow(), 5);
 
-        String intValue = refundCredits.replaceAll("[^0-9]", ""); //use regular expression to remove any characters from the string to leave the numbers only
-        int ticketRefund = Integer.parseInt(intValue);
+            int ticketID = Integer.parseInt(selectedTicket);
+            databaseSQL.refundTicket(accountID, ticketID);
 
-        //get current value of stadium credit for account
-        int sc = databaseSQL.getCurrentUser().getStadiumCredit();
-        int newSC = sc + ticketRefund;
-        
-        databaseSQL.updateAccountStadiumCredit(accountID, newSC); //update stadium credit value in database
-        databaseSQL.resetCurrentUser(accountID); //refresh current user to have updated attributes
-        
-        //refresh table by closing and reopening window
-        ViewTickets vt = new ViewTickets();
-        vt.setVisible(true);
-        this.dispose();        
+            //give user stadium credit for refunded ticket
+            String refundCredits = StadiumCreditRefundLabel.getText();
+
+            String intValue = refundCredits.replaceAll("[^0-9]", ""); //use regular expression to remove any characters from the string to leave the numbers only
+            int ticketRefund = Integer.parseInt(intValue);
+
+            //get current value of stadium credit for account
+            int sc = databaseSQL.getCurrentUser().getStadiumCredit();
+            int newSC = sc + ticketRefund;
+
+            databaseSQL.updateAccountStadiumCredit(accountID, newSC); //update stadium credit value in database
+            databaseSQL.resetCurrentUser(accountID); //refresh current user to have updated attributes
+            
+            
+
+            //refresh table by closing and reopening window
+            ViewTickets vt = new ViewTickets();
+            vt.setVisible(true);
+            this.dispose();
+            
+        } catch (Exception e) {
+            System.out.println("Error in refunding ticket.");
+            System.out.println(e);
+        }
+
     }//GEN-LAST:event_RefundButtonActionPerformed
 
+    private void addingBackTicketToEvent(String eventName) {
+        ArrayList<event> eventList = databaseSQL.getEvents();
+        
+        //search eventList to find matching name
+        for (int i = 0; i < eventList.size(); i++) {            
+            String event = eventList.get(i).getEventName(); 
+            if (eventName.equals(event)) {
+                int eventID = eventList.get(i).getEventID();
+                //increasing remaining tickets of event by 1 to account for refunded ticket
+                int remainingSeats = eventList.get(i).getRemainingTickets() + 1;
+                databaseSQL.updateRemainingSeats(eventID, remainingSeats);
+            }
+        }
+        System.out.println("");
+    }
+    
     private void PurchasedTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PurchasedTicketTableMouseClicked
         //when ticket is clicked, gui shows the amount of credits they'd get in return for a refund
         String selectedTicket = (String) PurchasedTicketTable.getValueAt(PurchasedTicketTable.getSelectedRow(), 4); //price column

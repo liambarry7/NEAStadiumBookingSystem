@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose(); //closes login menu
             
         } else if (valid != true) {
-            System.out.println("Login details incorrect!");
+            System.out.println("Login details incorrect!\n");
             ErrorMessage.setVisible(true); //displays login error message          
             
         }

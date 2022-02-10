@@ -96,7 +96,7 @@ public class NewPaymentMethod extends javax.swing.JFrame {
             }
         });
 
-        YearField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022", "2023", "2025", "2026", "2027" }));
+        YearField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022", "2023", "2024", "2025", "2026", "2027" }));
         YearField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 YearFieldActionPerformed(evt);
