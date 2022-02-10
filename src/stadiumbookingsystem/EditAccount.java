@@ -393,7 +393,7 @@ public class EditAccount extends javax.swing.JFrame {
             //Phone Number Check:
             Boolean validPhoneNo = false;
             String userPN = PhoneNumberField.getText();
-            
+            System.out.println(userPN.length());
             
             
             //Address One Check:
