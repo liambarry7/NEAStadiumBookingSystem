@@ -22,10 +22,8 @@ public class EditAccount extends javax.swing.JFrame {
      * Creates new form EditAccount
      */
     public EditAccount() {
-        initComponents();
-        
-        setDetailsAndButtons();
-        
+        initComponents();        
+        setDetailsAndButtons();        
     }
 
     /**
@@ -457,107 +455,7 @@ public class EditAccount extends javax.swing.JFrame {
                 pc = false;
                 PostCodeValidBox.setBackground(Color.red);
                 PostCodeValidBox.setText("Invalid");
-            }
-            
-            
-//            //first name check:
-//            Boolean validFirstName = false;
-//            String userFN = FirstNameField.getText();
-//            if (userFN.isEmpty()) {
-//                FirstNameValidBox.setBackground(Color.red);
-//                FirstNameValidBox.setText("Invalid");
-//                validFirstName = false;
-//            } else {
-//                FirstNameValidBox.setBackground(Color.green);
-//                FirstNameValidBox.setText("Valid");
-//                validFirstName = true;
-//            }
-//            
-//            //last name check:
-//            Boolean validLastName = false;
-//            String userLN = LastNameField.getText();
-//            if (userLN.isEmpty()) {
-//                LastNameValidBox.setBackground(Color.red);
-//                LastNameValidBox.setText("Invalid");
-//                validLastName = false;
-//            } else {
-//                LastNameValidBox.setBackground(Color.green);
-//                LastNameValidBox.setText("Valid");
-//                validLastName = true;
-//            }            
-            
-//            //email check:
-//            Boolean validEmail = false;
-//            String userEmail = EmailField.getText();
-//            //regular expression for checking email is valid by looking for characters such as '@' and checking the ending is realistic (e.g. '.com')
-//            Pattern repEmail = Pattern.compile("^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$");
-//            Matcher mEmail = repEmail.matcher(userEmail); //checks if user input is valid by comparing to regular expression limits
-//            
-//            if (mEmail.matches()) { //returns true if email is valid
-//                //ErrorEmail.setVisible(false);   
-//                EmailValidBox.setBackground(Color.green);
-//                EmailValidBox.setText("Valid");
-//                validEmail = true; //email is valid, so condition is true
-//            } else {
-//                //ErrorEmail.setVisible(true); //displays error message to user
-//                EmailValidBox.setBackground(Color.red);
-//                EmailValidBox.setText("Invalid");
-//                validEmail = false; //email is invalid, so condition is false
-//            }
-            
-//            //Phone Number Check:
-//            Boolean validPhoneNo = false;
-//            String userPN = PhoneNumberField.getText();
-//            System.out.println(userPN.length());
-//            
-            
-//            //Address One Check:
-//            Boolean validAddressOne = false;
-//            String userAO = AddressOneField.getText();
-//            if (userAO.isEmpty()) {
-//                AddressOneValidBox.setBackground(Color.red);
-//                AddressOneValidBox.setText("Invalid");
-//                validAddressOne = false;
-//            } else {
-//                AddressOneValidBox.setBackground(Color.green);
-//                AddressOneValidBox.setText("Valid");
-//                validAddressOne = true; 
-//            }
-            
-            //Address Two Check:
-//            String userAT = AddressTwoField.getText();
-       
-//            //City/Town Check:
-//            Boolean validCity = false;
-//            String userCity = CityField.getText();
-//            if (userCity.isEmpty()) {
-//                CityValidBox.setBackground(Color.red);
-//                CityValidBox.setText("Invalid");
-//                validCity = false;
-//            } else {
-//                CityValidBox.setBackground(Color.green);
-//                CityValidBox.setText("Valid");
-//                validCity = true;
-//            }
-                        
-            //Post Code Check:
-//            Boolean validPC = false;
-//            String userPost = PostCodeField.getText();
-//            String userPostCode = userPost.toUpperCase();
-//            //regular expression to validate the post code so that it incudes 5-7 alphanurmeric characters seperated by a sace, e.g. (RH2 3BG)
-//            Pattern repPC = Pattern.compile("^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$");            
-//            Matcher mPC = repPC.matcher(userPostCode);
-//            if (mPC.matches()) { //returns true if Post Code is valid
-//                PostCodeValidBox.setBackground(Color.green);
-//                PostCodeValidBox.setText("Valid");
-//                validPC = true; //Post Code is valid, so condition is true
-//            } else {
-//                PostCodeValidBox.setBackground(Color.red);
-//                PostCodeValidBox.setText("Invalid");
-//                validPC = false; //Post Code is invalid, so condition is false
-//            }
-            
-            //Link to regEx: https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Validation            
+            }           
             
             if ((fn == true) && (ln == true) && (email == true) && (pn == true) && (a1 == true) && (a2 == true) && (city == true) && (pc == true)) {
                 //update table

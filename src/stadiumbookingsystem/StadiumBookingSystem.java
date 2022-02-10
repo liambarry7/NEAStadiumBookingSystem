@@ -9,11 +9,6 @@ public class StadiumBookingSystem {
     public static void main(String[] args) {
         
         
-        //TO DO:
-        // - add more comments
-        // - remove unnecessary print lines and commented code
-        
-
 
         createLoginScreen();
         
