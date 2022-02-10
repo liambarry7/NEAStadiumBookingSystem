@@ -110,8 +110,7 @@ public class databaseSQL {
         try {            
             String sql = "DELETE * FROM account WHERE accountid = '"+accountID+"' "; //statement used to find record with parametered account ID
             executer.executeUpdateQuery(getConnection(), sql); //uses connection to database and statement to fire update query at the database
-            
-            
+
             System.out.println("successfully deleted account.");            
             con.close();
         } catch (Exception e) {
@@ -228,50 +227,7 @@ public class databaseSQL {
     
     public static account getCurrentUser() { //returns account object of logged in user so that object can be used in other classes
         return currentUser;
-    }
-    
-   
-//    public static void getAllAccounts() {
-//        ArrayList<account> AccountList = new ArrayList<>();
-//        try {
-//            String sql = "SELECT * FROM account";
-//            ResultSet rs = executer.executeQuery(getConnection(), sql);
-//            while (rs.next()) {
-//                int id = rs.getInt("accountid"); //get record and store it in variable id
-//                String firstName = rs.getString("firstname");
-//                String lastName = rs.getString("lastname");
-//                String email = rs.getString("email");
-//                String password = rs.getString("password");
-//                String phoneNumber = rs.getString("phonenumber");
-//                String addressOne = rs.getString("addresslineone");
-//                String addressTwo = rs.getString("addresslinetwo");
-//                String city = rs.getString("city");
-//                String postCode = rs.getString("postcode");
-//                String membership = rs.getString("membership");
-//                int stadiumCredit = rs.getInt("stadiumCredit");
-//                
-//                
-//                account ac = new account(id, firstName, lastName, email, password, phoneNumber, addressOne, addressTwo, city, postCode, membership, stadiumCredit); //creating new object to be added to the list
-//                AccountList.add(ac); //adding new object to array list
-//                
-//                
-//                //System.out.println(id + " " + firstName + " " + lastName + " " + email + " " + password + " " + phoneNumber + " " + addressOne + " " + addressTwo + " " + city + " " + postCode);
-//            }
-//            
-//            //printing all accounts from account table in database
-//            for (int i = 0; i < AccountList.size(); i++) {
-//                    System.out.println(AccountList.get(i));                    
-//                }
-//            
-//            
-//            rs.close();
-//            con.close();
-//            
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
-    
+    }   
     
     // </editor-fold>
     
@@ -371,33 +327,6 @@ public class databaseSQL {
         return userPaymentMethods;  
     }
     
-
-    
-    
-//    public static void getAllPayments() {
-//        ArrayList<Integer> numbers = new ArrayList<>();
-//        try {
-//            String sql = "SELECT * FROM payment";
-//            ResultSet rs = executer.executeQuery(getConnection(), sql);
-//            while (rs.next()) {
-//                int id = rs.getInt("paymentid");
-//                
-//                numbers.add(id);
-//            }
-//            
-//            for (int i = 0; i < numbers.size(); i++) {
-//                System.out.println(numbers.get(i));
-//                
-//            }
-//            
-//            rs.close();
-//            con.close();
-//        } catch (Exception e) {
-//            System.out.println("well this isnt working");
-//        }
-//    }
-    
-    
     // </editor-fold>
     
 // <editor-fold defaultstate="collapsed" desc="Events">
@@ -455,11 +384,8 @@ public class databaseSQL {
             rs.next();
             int idValue = rs.getInt("ticketNum")+1;
             
-//            System.out.println("New ticket num: " + idValue);
-            
             rs.close();
             con.close();
-            
             return idValue;
         } catch (Exception e) {
             System.out.println("Error in finding maximum ticket number: " + e);
@@ -614,8 +540,6 @@ public class databaseSQL {
                 st.add(seasonTicket);
             }
                
-            
-            System.out.println("Successfully got all season tickets from database.");
             con.close();
             rs.close();
         } catch (Exception e) {

@@ -367,8 +367,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tick to confrim account deletion."/>
+        <Property name="text" type="java.lang.String" value="Tick to confirm account deletion."/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteConfirmBoxActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

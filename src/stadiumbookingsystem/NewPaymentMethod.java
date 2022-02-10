@@ -21,9 +21,6 @@ public class NewPaymentMethod extends javax.swing.JFrame {
      */
     public NewPaymentMethod() {
         initComponents();
-        
-       
-        //https://docs.oracle.com/javase/tutorial/uiswing/components/formattedtextfield.html
     }
 
     /**
@@ -266,8 +263,6 @@ public class NewPaymentMethod extends javax.swing.JFrame {
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         
         try {
-            //fix parametered method for payment and account IDs
-
             //Adding new payment method to database
             int accountID = databaseSQL.getCurrentUser().getAccountID();
 
@@ -281,16 +276,15 @@ public class NewPaymentMethod extends javax.swing.JFrame {
 
             //get security number as an int and then hash it
             String secNo = SecurityNoField.getText();
+            System.out.println("\nSecurity number before hashing: " + secNo);
             String hashSecNo = hashing.hasher(secNo);
-            //System.out.println(hashSecNo);
+            System.out.println("Secuirty number after hashing: " + hashSecNo);
 
             payment newPaymentMethod = new payment(paymentID, accountID, cardHolder, cardNumber, exMonth, exYear, hashSecNo);
-            
-            
+
             System.out.println(newPaymentMethod.toString());
             
-            databaseSQL.addNewPayment(newPaymentMethod);
-            
+            databaseSQL.addNewPayment(newPaymentMethod);            
                         
             AccountPaymentMethods apm = new AccountPaymentMethods();
             apm.setSize(683, 390);
@@ -317,8 +311,6 @@ public class NewPaymentMethod extends javax.swing.JFrame {
         } else if (text.length() >= 3) { //will consume any character if length of string is greater than 3
             evt.consume();
         }
-        
-        
     }//GEN-LAST:event_SecurityNoFieldKeyTyped
 
     private void CardNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardNoFieldActionPerformed

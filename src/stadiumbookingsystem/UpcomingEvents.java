@@ -420,7 +420,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
     public void sortAZ() {
         //gets all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
-        System.out.println("Events before sort:");
+        System.out.println("Events before A-Z sort:");
         for (int i = 0; i < eventsList.size(); i++) {
             System.out.println(eventsList.get(i));            
         }
@@ -453,7 +453,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             }
         }
         
-        System.out.println("Events after merge sort:");
+        System.out.println("Events after A-Z merge sort:");
         for (int i = 0; i < eventsAZ.size(); i++) {
             System.out.println(eventsAZ.get(i));            
         }
@@ -496,7 +496,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
     public void sortZA() {
         //get all events from database and put them into an arraylist
         ArrayList<event> eventsList = databaseSQL.getEvents();
-        System.out.println("Events before sort:");
+        System.out.println("Events before Z-A sort:");
         for (int i = 0; i < eventsList.size(); i++) {
             System.out.println(eventsList.get(i));            
         }
@@ -530,7 +530,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             } 
         }
         
-        System.out.println("Events after merge sort:");
+        System.out.println("Events after Z-A merge sort and stack manipulation:");
         for (int i = 0; i < eventsZA.size(); i++) {
             System.out.println(eventsZA.get(i));            
         }
@@ -607,22 +607,18 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-//            System.out.println(numberOfDays);
+            System.out.println("Number of days until event one: " + numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
-//                    System.out.println("Cannot buy tickets as event over one month away");
                     BuyTicketsOne.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under 30 days");
                     BuyTicketsOne.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             } else if (membership.equals("member")) {
                 if (numberOfDays > 37) {
-//                    System.out.println("Cannot buy tickets as event over one month and a week away");
                     BuyTicketsOne.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under a month and one week away");
                     BuyTicketsOne.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             }
@@ -642,22 +638,19 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-//            System.out.println(numberOfDays);
+            System.out.println("Number of days until event two: " + numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
-//                    System.out.println("Cannot buy tickets as event over one month away");
+
                     BuyTicketsTwo.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under 30 days");
                     BuyTicketsTwo.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             } else if (membership.equals("member")) {
                 if (numberOfDays > 37) {
-//                    System.out.println("Cannot buy tickets as event over one month and a week away");
                     BuyTicketsTwo.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under a month and one week away");
                     BuyTicketsTwo.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             }
@@ -677,22 +670,18 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-//            System.out.println(numberOfDays);
+            System.out.println("Number of days until event three: " + numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
-//                    System.out.println("Cannot buy tickets as event over one month away");
                     BuyTicketsThree.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under 30 days");
                     BuyTicketsThree.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             } else if (membership.equals("member")) {
                 if (numberOfDays > 37) {
-//                    System.out.println("Cannot buy tickets as event over one month and a week away");
                     BuyTicketsThree.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under a month and one week away");
                     BuyTicketsThree.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             }
@@ -712,22 +701,18 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-//            System.out.println(numberOfDays);
+            System.out.println("Number of days until event four: " + numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
-//                    System.out.println("Cannot buy tickets as event over one month away");
                     BuyTicketsFour.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under 30 days");
                     BuyTicketsFour.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             } else if (membership.equals("member")) {
                 if (numberOfDays > 37) {
-//                    System.out.println("Cannot buy tickets as event over one month and a week away");
                     BuyTicketsFour.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under a month and one week away");
                     BuyTicketsFour.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             }           
@@ -747,22 +732,18 @@ public class UpcomingEvents extends javax.swing.JFrame {
             //calucalte the time difference between the two dates
             long timeDiff = formattedEventDate.getTime() - currentDate.getTime();
             long numberOfDays = (timeDiff / (1000 * 60 * 60 * 24)) % 365;
-//            System.out.println(numberOfDays);
+            System.out.println("Number of days until event five: " + numberOfDays);
 
             if (membership.equals("not a member")) {
                 if (numberOfDays > 30) {
-//                    System.out.println("Cannot buy tickets as event over one month away");
                     BuyTicketsFive.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under 30 days");
                     BuyTicketsFive.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             } else if (membership.equals("member")) {
                 if (numberOfDays > 37) {
-//                    System.out.println("Cannot buy tickets as event over one month and a week away");
                     BuyTicketsFive.setEnabled(false); //set button to disabled so that user cannot buy any tickets
                 } else {
-//                    System.out.println("Event under a month and one week away");
                     BuyTicketsFive.setEnabled(true); //set button to enables so that user can buy tickets
                 }
             }           
@@ -811,7 +792,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
 
 
             ArrayList<event> eventList = databaseSQL.getEvents();
-            System.out.println("Events before sort:");
+            System.out.println("Events before date sort:");
             for (int i = 0; i < eventList.size(); i++) {
                 System.out.println(eventList.get(i));
             }
@@ -832,7 +813,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }
             }
             
-            System.out.println("Events after bubble sort:");
+            System.out.println("Events after date bubble sort:");
             for (int i = 0; i < eventsSoonest.size(); i++) {
                 System.out.println(eventsSoonest.get(i));
             }
@@ -914,7 +895,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             }
 
             ArrayList<event> eventList = databaseSQL.getEvents();
-            System.out.println("Events before sort:");
+            System.out.println("Events before reverse date sort:");
             for (int i = 0; i < eventList.size(); i++) {
                 System.out.println(eventList.get(i));
             }
@@ -935,7 +916,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
                 }
             } 
             
-            System.out.println("Events after bubble sort:");
+            System.out.println("Events after reverse date bubble sort and stack manipulation:");
             for (int i = 0; i < eventsFurthest.size(); i++) {
                 System.out.println(eventsFurthest.get(i));
             }
@@ -1017,7 +998,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameOne.getText())) {
                 //create new object of the selected event to be sent to MoreEventInformation class
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed from more information gui
 
                 //opens more information window
@@ -1042,7 +1023,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameTwo.getText())) {
                 //create new object of the selected event to be sent to MoreEventInformation class
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed from more information gui
 
                 //opens more information window
@@ -1063,7 +1044,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameThree.getText())) {
                 //create new object of the selected event to be sent to MoreEventInformation class
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed from more information gui
 
                 //opens more information window
@@ -1084,7 +1065,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameFour.getText())) {
                 //create new object of the selected event to be sent to MoreEventInformation class
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed from more information gui
 
                 //opens more information window
@@ -1105,7 +1086,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameFive.getText())) {
                 //create new object of the selected event to be sent to MoreEventInformation class
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-//                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed from more information gui
 
                 //opens more information window
@@ -1127,7 +1108,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameOne.getText())) {
                 //create new object of the selected event to used by the ticket classes
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed by the ticket classes
 
                 //opens stand selector window
@@ -1152,7 +1133,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameTwo.getText())) {
                 //create new object of the selected event to used by the ticket classes
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed by the ticket classes
 
                 //opens stand selector window
@@ -1176,7 +1157,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameThree.getText())) {
                 //create new object of the selected event to used by the ticket classes
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed by the ticket classes
 
                 //opens stand selector window
@@ -1200,7 +1181,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameFour.getText())) {
                 //create new object of the selected event to used by the ticket classes
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed by the ticket classes
 
                 //opens stand selector window
@@ -1224,7 +1205,7 @@ public class UpcomingEvents extends javax.swing.JFrame {
             if (eventsList.get(i).getEventName().equals(NameFive.getText())) {
                 //create new object of the selected event to used by the ticket classes
                 event currentEvent = new event(eventsList.get(i).getEventID(), eventsList.get(i).getEventName(), eventsList.get(i).getEventTime(), eventsList.get(i).getEventDate(), eventsList.get(i).getEventCapacity(), eventsList.get(i).getEventDiscription(), eventsList.get(i).getRemainingTickets(), eventsList.get(i).getEventType(), eventsList.get(i).getEventBand());
-                System.out.println(currentEvent);
+                System.out.println("\nUser chosen event: \n" + currentEvent);
                 chosenEvent = currentEvent; //sets global variable to selected event so that object can be accessed by the ticket classes
 
                 //opens stand selector window

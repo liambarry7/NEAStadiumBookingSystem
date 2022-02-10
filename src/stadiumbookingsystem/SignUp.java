@@ -358,26 +358,16 @@ public class SignUp extends javax.swing.JFrame {
             if (validPassword == true && validEmail == true && validPhoneNo == true && validTextFields == true && validPC == true) {
                 
                 int accountID = databaseSQL.getMaxAccountNumber(); //gets integer for highest accountID so that new account does not have the same ID as another account
-//                String a = "AccountID";
-//                String b = "account";
-//                int accountID = databaseSQL.getMaxIDNumber(a,b);
-//                if (accountID == -1) {
-//                    System.out.println("FAIL");
-//                } else {
-//                    System.out.println("Success");
-//                }
-                
-                
-                
-                
-                System.out.println("Password before hashing: " + PasswordField.getText());
+
+                System.out.println("\nPassword before hashing: " + PasswordField.getText());
                 String hashedPassword = hashing.hasher(PasswordField.getText());
+                System.out.println("Password after hashing: " + hashedPassword);
                 
                 String membership = "not a member";
                 int stadiumCredit = 0;
                 
                 //creates new account object to be used to create a new record in the account table
-                account na = new account(accountID, FirstNameField.getText(), LastNameField.getText(), EmailField.getText(), hashedPassword, PhoneNumberField.getText(), PhoneNumberField.getText(), AddressTwoField.getText(), CityField.getText(), PostCodeField.getText(), membership, stadiumCredit);
+                account na = new account(accountID, FirstNameField.getText(), LastNameField.getText(), EmailField.getText(), hashedPassword, PhoneNumberField.getText(), AddressOneField1.getText(), AddressTwoField.getText(), CityField.getText(), PostCodeField.getText(), membership, stadiumCredit);
                 System.out.println(na);
                 //creates new record in database using account object
                 databaseSQL.addNewAccount(na);
@@ -391,7 +381,7 @@ public class SignUp extends javax.swing.JFrame {
                 this.dispose(); //closes signup menu
                 
             } else {
-                System.out.println("failed to create account");
+                System.out.println("Failed to create account.");
             }
          
 

@@ -19,10 +19,6 @@ import objects.ticket;
  */
 public class PayMenu extends javax.swing.JFrame {
 
-    
-    
-    
-    
     /**
      * Creates new form PayMenu
      */
@@ -155,13 +151,10 @@ public class PayMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(339, 339, 339))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -177,8 +170,8 @@ public class PayMenu extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(StadiumCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(CheckConfirmText, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PaymentSelecter, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PaymentSelecter, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CheckConfirmText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ConfirmButton))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,9 +181,9 @@ public class PayMenu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
@@ -244,6 +237,7 @@ public class PayMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_StadiumCreditCheckBoxActionPerformed
 
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
+        System.out.println("");
         if (ConfirmCheckBox.isSelected()) {
             CheckConfirmText.setVisible(false);
             //if payment method is blank
@@ -300,11 +294,11 @@ public class PayMenu extends javax.swing.JFrame {
     public static ArrayList<ticket> ticketList = new ArrayList<>();
     
     public static void fillTicketsList() {
-        
+        System.out.println("\nUser's selected tickets: ");
         for (int i = 0; i < ChooseSeat.getFinalTickets().size(); i++) {
-            ticket finalTicket = new ticket(ChooseSeat.getFinalTickets().get(i).getTicketID(), ChooseSeat.getFinalTickets().get(i).getAccountID(), ChooseSeat.getFinalTickets().get(i).getEventId(), ChooseSeat.getFinalTickets().get(i).getStand(), ChooseSeat.getFinalTickets().get(i).getSeat(), ChooseSeat.getFinalTickets().get(i).getPrice(), ChooseSeat.getFinalTickets().get(i).getAge());            
-        
+            ticket finalTicket = new ticket(ChooseSeat.getFinalTickets().get(i).getTicketID(), ChooseSeat.getFinalTickets().get(i).getAccountID(), ChooseSeat.getFinalTickets().get(i).getEventId(), ChooseSeat.getFinalTickets().get(i).getStand(), ChooseSeat.getFinalTickets().get(i).getSeat(), ChooseSeat.getFinalTickets().get(i).getPrice(), ChooseSeat.getFinalTickets().get(i).getAge());
             ticketList.add(finalTicket);
+            System.out.println(ticketList.get(i));
         }
 
     }
@@ -352,8 +346,7 @@ public class PayMenu extends javax.swing.JFrame {
     }
     
     public void fillPaymentTicketTable() {
-        DefaultTableModel tblModel = (DefaultTableModel)TicketTable.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel)TicketTable.getModel();        
         
         //load tickets into the table
         for (int i = 0; i < ticketList.size(); i++) {
@@ -379,9 +372,10 @@ public class PayMenu extends javax.swing.JFrame {
         //set array of user's card numbers the size of the ammount of cards they have
         String[] paymentOptions = new String[paymentList.size()];
         
-        
+        System.out.println("\nUser's payment methods: ");
         for (int i = 0; i < paymentList.size(); i++) {
-            paymentOptions[i] = paymentList.get(i).getCardNumber();           
+            paymentOptions[i] = paymentList.get(i).getCardNumber(); 
+            System.out.println(paymentOptions[i]);
         }
                 
         //set dropdown to array of card numbers

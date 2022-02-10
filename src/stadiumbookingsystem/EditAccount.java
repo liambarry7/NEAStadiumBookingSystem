@@ -158,7 +158,12 @@ public class EditAccount extends javax.swing.JFrame {
         }
 
         DeleteConfirmBox.setForeground(new java.awt.Color(255, 0, 0));
-        DeleteConfirmBox.setText("Tick to confrim account deletion.");
+        DeleteConfirmBox.setText("Tick to confirm account deletion.");
+        DeleteConfirmBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteConfirmBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -405,19 +410,8 @@ public class EditAccount extends javax.swing.JFrame {
             }
             
             //Address Two Check:
-//            Boolean validAddressTwo = false;
             String userAT = AddressTwoField.getText();
-//            if (userAT.isEmpty()) {
-//                AddressTwoValidBox.setBackground(Color.red);
-//                AddressTwoValidBox.setText("Invalid");
-//                validAddressTwo = false;
-//            } else {
-//                AddressTwoValidBox.setBackground(Color.green);
-//                AddressTwoValidBox.setText("Valid");
-//                validAddressTwo = true;
-//            }
-            
-            
+       
             //City/Town Check:
             Boolean validCity = false;
             String userCity = CityField.getText();
@@ -430,12 +424,7 @@ public class EditAccount extends javax.swing.JFrame {
                 CityValidBox.setText("Valid");
                 validCity = true;
             }
-            
-            
-            
-            
-            
-            
+                        
             //Post Code Check:
             Boolean validPC = false;
             String userPost = PostCodeField.getText();
@@ -454,8 +443,6 @@ public class EditAccount extends javax.swing.JFrame {
             }
             
             //Link to regEx: https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Validation            
-            //^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
-            
             
             if (validFirstName == true && validLastName == true && validEmail == true && validAddressOne == true && validCity == true && validPC == true) {
                 //update table
@@ -467,32 +454,18 @@ public class EditAccount extends javax.swing.JFrame {
                 //updates current user details
                 databaseSQL.setCurrentUser(changedDetails.getEmail(), changedDetails.getPassword());
                 
-                
-                
                 AccountMenu am = new AccountMenu();
                 am.setSize(616, 540);
                 am.setVisible(true);
                 this.dispose();
             }
 
-
-            
-            
-            
-            
-            
-            
-            
         } catch (Exception e) {
             System.out.println("Error when saving new account details: " + e);
         }
-        
-        
-        
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void DeleteAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAccountButtonActionPerformed
-        
         //remove all data from database concering the deleted account
         if (DeleteConfirmBox.isSelected()) {
             int accountID = databaseSQL.getCurrentUser().getAccountID();
@@ -505,13 +478,11 @@ public class EditAccount extends javax.swing.JFrame {
             System.exit(0);
         }
         
-        
-        
-        
-        
-        
-        
     }//GEN-LAST:event_DeleteAccountButtonActionPerformed
+
+    private void DeleteConfirmBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteConfirmBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteConfirmBoxActionPerformed
 
     /**
      * @param args the command line arguments

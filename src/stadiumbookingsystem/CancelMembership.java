@@ -89,8 +89,7 @@ public class CancelMembership extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void CancelMembershipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelMembershipButtonActionPerformed
-        Boolean selectedBox = ConfirmTickBox.isSelected();
-        
+        Boolean selectedBox = ConfirmTickBox.isSelected();        
         int accountID = databaseSQL.getCurrentUser().getAccountID();
         String status = "not a member";
         

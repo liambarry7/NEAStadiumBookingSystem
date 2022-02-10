@@ -52,35 +52,12 @@ public class ticket {
         return age;
     }
 
-    public void setTicketID(int ticketID) {
-        this.ticketID = ticketID;
-    }
-
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
-
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
-    public void setStand(String stand) {
-        this.stand = stand;
-    }
-
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
     public void setPrice(int price) {
         this.price = price;
     }
 
     public void setAge(String age) {
         this.age = age;
-    }
-
-    
-    
+    }    
     
 }

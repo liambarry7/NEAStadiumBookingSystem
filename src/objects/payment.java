@@ -52,35 +52,6 @@ public class payment {
         return securityNumber;
     }
 
-//    public void setPaymentID(int paymentID) {
-//        this.paymentID = paymentID;
-//    }
-//
-//    public void setAccountID(int accountID) {
-//        this.accountID = accountID;
-//    }
-//
-//    public void setCardHolderName(String cardHolderName) {
-//        this.cardHolderName = cardHolderName;
-//    }
-//
-//    public void setCardNumber(String cardNumber) {
-//        this.cardNumber = cardNumber;
-//    }
-//
-//    public void setExpirationMonth(String expirationMonth) {
-//        this.expirationMonth = expirationMonth;
-//    }
-//
-//    public void setExpirationYear(String expirationYear) {
-//        this.expirationYear = expirationYear;
-//    }
-//
-//    public void setSecurityNumber(String securityNumber) {
-//        this.securityNumber = securityNumber;
-//    }
-
-    
     
     
 }

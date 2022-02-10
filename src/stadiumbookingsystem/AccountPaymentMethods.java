@@ -25,10 +25,6 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
         initComponents();
         
         fillTable();
-        
-       
-        
-        
     }
 
     /**
@@ -146,13 +142,11 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         NewPaymentMethod ap = new NewPaymentMethod();
-        //ap.setSize(550, 560);
         ap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
-        //1:32
         int userID = databaseSQL.getCurrentUser().getAccountID(); //gets users accountID to be used in the sql search
         ArrayList<payment> list = databaseSQL.getPaymentMethods(userID); //creates arrayList with ausers saved payment methods
         
@@ -169,7 +163,6 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
             }
         }
         
-        
         if(paymentID == -1) { //cannot have -1 paymentID so this is stops the system from crashing 
             System.out.println("Failed to find paymentID.");
         } else {
@@ -184,16 +177,16 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
         
     }//GEN-LAST:event_RemoveButtonActionPerformed
 
-    private void fillTable() {
-        
-        DefaultTableModel tblModel = (DefaultTableModel)PaymentTable.getModel();
-        
+    private void fillTable() {        
+        DefaultTableModel tblModel = (DefaultTableModel)PaymentTable.getModel();        
         
         //loads data into the table
         int userID = databaseSQL.getCurrentUser().getAccountID(); //gets users accountID to be used in the sql search
         ArrayList<payment> list = databaseSQL.getPaymentMethods(userID); //creates arrayList with ausers saved payment methods
 
+        System.out.println("\nUser's payment methods: ");
         for (int i = 0; i < list.size(); i++) { //loops through every object in list and adds the details into the table
+            System.out.println(list.get(i));
             String chn = list.get(i).getCardHolderName();
             String cn = list.get(i).getCardNumber();
             String em = list.get(i).getExpirationMonth();
@@ -202,9 +195,7 @@ public class AccountPaymentMethods extends javax.swing.JFrame {
             String data[] = {chn, cn, em, ey}; //creates string of payment details to be put into table
             tblModel.addRow(data); //adds string of data into table            
         }
-
-    }
-    
+    }   
     
     /**
      * @param args the command line arguments

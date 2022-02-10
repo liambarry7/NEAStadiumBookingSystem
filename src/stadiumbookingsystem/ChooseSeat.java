@@ -1473,9 +1473,7 @@ public class ChooseSeat extends javax.swing.JFrame {
     public void setUpStand() {
         StandLabel.setText(BuyTickets.selectedStand);
     }
-    
-    
-    
+        
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         seatCounter = 0;
         emptySelectedTickets(); //empties selectedTickets arraylist so that if the user leaves and rejoins the page, there are no tickets saved
@@ -1880,6 +1878,7 @@ public class ChooseSeat extends javax.swing.JFrame {
                 if (searchTicketSeat.equals(currentSeat)) {
                     selectedTickets.get(i).setAge(chosenAge);
                     int newPrice = priceCalculator(currentSeat, chosenAge);
+                    System.out.println("\nNew price of ticket: " + newPrice);
                     selectedTickets.get(i).setPrice(newPrice);
                 }
 
@@ -1962,6 +1961,7 @@ public class ChooseSeat extends javax.swing.JFrame {
                 
                 //ticket price:
                 int price = priceCalculator(seatNO, age);
+                System.out.println("\nPrice of ticket: " + price);
       
                 //create new object of ticket to be added to booking tickets arraylist
                 ticket newTicket = new ticket(ticketID, databaseSQL.getCurrentUser().getAccountID(), UpcomingEvents.getChosenEvent().getEventID(), BuyTickets.selectedStand, seatNO, price, age);
@@ -1987,6 +1987,7 @@ public class ChooseSeat extends javax.swing.JFrame {
                 seatCounter--; //minus one from seatCounter
             }
         }
+        System.out.println("Seat count: " + seatCounter);
         
     }
     
@@ -2016,7 +2017,7 @@ public class ChooseSeat extends javax.swing.JFrame {
         }
 
         int newPrice = (band * ageNumber) + 25 + distanceCost;        
-        
+//        System.out.println("\nPrice of ticket: " + newPrice);
         return newPrice;
     }
     
@@ -2026,8 +2027,7 @@ public class ChooseSeat extends javax.swing.JFrame {
         ArrayList<ticket> finalTickets = new ArrayList<>();
         for (int i = 0; i < selectedTickets.size(); i++) {
             finalTickets.add(selectedTickets.get(i));            
-        }
-        
+        }        
         return finalTickets;
     }
     
@@ -2083,7 +2083,6 @@ public class ChooseSeat extends javax.swing.JFrame {
             String standNameST = seasonTicketSeats.get(i).getStand();
             
             if (seatNumber.equals(seatButton.getText()) && standNameST.equals(standName)) {
-                System.out.println("ah");
                 seatButton.setEnabled(false);
                 seatButton.setBackground(new Color(255,0,51));                
             }

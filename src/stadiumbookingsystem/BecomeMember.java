@@ -135,6 +135,11 @@ public class BecomeMember extends javax.swing.JFrame {
         for (int i = 0; i < paymentList.size(); i++) {
             paymentOptions[i] = paymentList.get(i).getCardNumber();
         }
+        
+        System.out.println("\nUser payment methods: ");
+        for (int i = 0; i < paymentOptions.length; i++) {
+            System.out.println(paymentOptions[i]);
+        }
 
         //set dropdown to array of card numbers
         PaymentSelecter.setModel(new javax.swing.DefaultComboBoxModel<>(paymentOptions));

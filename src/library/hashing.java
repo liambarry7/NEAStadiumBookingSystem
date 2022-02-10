@@ -6,7 +6,6 @@ import java.security.MessageDigest;
 public class hashing {
     
     public static String hasher(String password) {
-        
         try {
             //Values returned by a hash function are called Message Digest
             //'SHA-256' - 256 bits Hash
@@ -26,7 +25,6 @@ public class hashing {
             }
             
             password = sb.toString();
-            System.out.println("Hashed value: " + password);
         } catch (Exception e) {
             System.out.println("Error in hashing password: " + e);
         }

@@ -139,7 +139,7 @@ public class BuyTickets extends javax.swing.JFrame {
     private void SouthStandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SouthStandButtonActionPerformed
         //set global variable of selected stand to be referenced when buying tickets
         selectedStand = "South Stand";
-        
+        System.out.println("\nSelected stand: " + selectedStand);
         ChooseSeat cs = new ChooseSeat();
         cs.setSize(1100, 650);
         cs.setVisible(true);
@@ -156,7 +156,7 @@ public class BuyTickets extends javax.swing.JFrame {
     private void WestStandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WestStandButtonActionPerformed
         //set global variable of selected stand to be referenced when buying tickets
         selectedStand = "West Stand";
-        
+        System.out.println("\nSelected stand: " + selectedStand);
         ChooseSeat cs = new ChooseSeat();
         cs.setSize(1100, 650);
         cs.setVisible(true);
@@ -166,7 +166,7 @@ public class BuyTickets extends javax.swing.JFrame {
     private void NorthStandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NorthStandButtonActionPerformed
         //set global variable of selected stand to be referenced when buying tickets
         selectedStand = "North Stand";
-        
+        System.out.println("\nSelected stand: " + selectedStand);       
         ChooseSeat cs = new ChooseSeat();
         cs.setSize(1100, 650);
         cs.setVisible(true);
@@ -176,7 +176,7 @@ public class BuyTickets extends javax.swing.JFrame {
     private void EastStandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EastStandButtonActionPerformed
         //set global variable of selected stand to be referenced when buying tickets
         selectedStand = "East Stand";
-        
+        System.out.println("\nSelected stand: " + selectedStand);
         ChooseSeat cs = new ChooseSeat();
         cs.setSize(1100, 650);
         cs.setVisible(true);

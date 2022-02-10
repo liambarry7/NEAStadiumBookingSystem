@@ -98,8 +98,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        
-        
         String email = EmailField.getText();
         String password = new String (jPasswordField1.getPassword());
         
@@ -118,15 +116,9 @@ public class Login extends javax.swing.JFrame {
             ErrorMessage.setVisible(true); //displays login error message          
             
         }
-        
-        
-        
-        
-        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void CreateAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountButtonActionPerformed
-        
         SignUp su = new SignUp(); //creates new object to create signup menu
         su.setSize(722, 700);
         su.setVisible(true);

@@ -30,11 +30,7 @@ public class account {
         this.postCode = postCode;
         this.membership = membership;
         this.stadiumCredit = stadiumCredit;
-    }
-    
-    
-
-         
+    } 
     
     public String toString() {
         return accountID + " " + firstName + " " + lastName + " " + email + " " + password + " " + phoneNo + " " + addressOne + " " + addressTwo + " " + city + " " + postCode + " " + membership + " " + stadiumCredit;
