@@ -25,7 +25,11 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         initComponents();
         setPaymentChoices();
         SelectSeatLabel.setVisible(false);
+        PaymentError.setVisible(false);
+        ConfirmError.setVisible(false);
         redSeats();
+//       seatChecker(Seat1);
+//seatChecker(Seat4);
     }
 
     /**
@@ -151,6 +155,8 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         AgeSelector = new javax.swing.JComboBox<>();
         SelectSeatLabel = new javax.swing.JLabel();
+        PaymentError = new javax.swing.JLabel();
+        ConfirmError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1016,9 +1022,20 @@ public class BuySeasonTicket extends javax.swing.JFrame {
 
         AgeSelector.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         AgeSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adult", "Child", "Senior", "Student" }));
+        AgeSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgeSelectorActionPerformed(evt);
+            }
+        });
 
         SelectSeatLabel.setForeground(new java.awt.Color(255, 0, 0));
         SelectSeatLabel.setText("Please select a seat.");
+
+        PaymentError.setForeground(new java.awt.Color(255, 0, 0));
+        PaymentError.setText("Please add a payment method to your account.");
+
+        ConfirmError.setForeground(new java.awt.Color(255, 0, 0));
+        ConfirmError.setText("Please tick confirm to verify your purchase.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1254,6 +1271,8 @@ public class BuySeasonTicket extends javax.swing.JFrame {
                                 .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(BuyButton))
+                            .addComponent(PaymentError)
+                            .addComponent(ConfirmError)
                             .addComponent(SelectSeatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
@@ -1345,8 +1364,12 @@ public class BuySeasonTicket extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PaymentSelecter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ConfirmError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PaymentError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SelectSeatLabel)
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ConfirmButton)
                             .addComponent(BuyButton)))
@@ -1851,36 +1874,35 @@ public class BuySeasonTicket extends javax.swing.JFrame {
 
     private void StandSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StandSelectorActionPerformed
         redSeats();
+        seatCounter = 0; //reset the seat counter to 0
+        PriceLabel.setText("000");
     }//GEN-LAST:event_StandSelectorActionPerformed
 
-    public void fillBookedSeats(JButton seat) {
-        ArrayList<seasonTicket> allST = databaseSQL.getAllST();
-        
-        for (int i = 0; i < allST.size(); i++) {
+    public void fillBookedSeats(JButton seatButton) {
+        ArrayList<seasonTicket> seasonTickets = databaseSQL.getAllST();
 
-            //if stand = selected stand, turn seats red
-            String selectedStand = StandSelector.getSelectedItem().toString();
-            String ticketStand = allST.get(i).getStand();
-        
-            if (selectedStand.equals(ticketStand)) {
-                //match the seats
-                String selectedSeat = seat.getText();
-                String ticketSeat = allST.get(i).getSeat();
-                
-                //reset seat choice
-                seat.setBackground(new Color(0, 153, 255)); //set colour to blue so seat can be chosen
-                seatCounter = 0;
+        System.out.println("\nSeat number: " + seatButton.getText());
+        System.out.println("Booked Season Tickets: ");
+        for (int i = 0; i < seasonTickets.size(); i++) {
+            System.out.println(seasonTickets.get(i));
+        }
 
-                if (selectedSeat.equals(ticketSeat)) { //if seat has already been booked, turn seat to red and make it unclickable
-                    seat.setBackground(new Color(255, 0, 51)); //set colour to red so seat cannot be chosen and double booked
-                    seat.setEnabled(false); //button cannot be clicked
-                }
+        //reset all seats to be blue
+        seatButton.setBackground(new Color(0, 153, 255)); //set colour to blue so seat can be chosen
+        seatButton.setEnabled(true); //button can be clicked
 
-            } else if (!selectedStand.equals(ticketStand)) {
-                seat.setBackground(new Color(0, 153, 255)); //set colour to blue so seat can be chosen
-                seat.setEnabled(true); //button can be clicked 
-                //set seatcounter to 0 incase a selected seat becomes unclickable so that user can select new seat
-                seatCounter = 0;
+        for (int i = 0; i < seasonTickets.size(); i++) {
+            String stand = StandSelector.getSelectedItem().toString();
+            String ticketStand = seasonTickets.get(i).getStand();
+            String seat = seatButton.getText();
+            String ticketSeat = seasonTickets.get(i).getSeat();
+
+            //if the selected stand matches the ticket stand
+            //if the seat matches the ticket seat
+            if (stand.equals(ticketStand) && seat.equals(ticketSeat)) {
+                //turn the seat red and disable the button so it cannot be double booked
+                seatButton.setEnabled(false);
+                seatButton.setBackground(new Color(255, 0, 51));
             }
         }
 
@@ -1993,24 +2015,35 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         String seat = seatNumber;
 
         if (!seat.equals("")) {
-            if (ConfirmButton.isSelected()) {
-                int stID = databaseSQL.getMaxSTNumber();
-                int accountID = databaseSQL.getCurrentUser().getAccountID();
-                String stand = StandSelector.getSelectedItem().toString();
-                String age = AgeSelector.getSelectedItem().toString();
-                int price = Integer.parseInt(PriceLabel.getText());
-                String expirationDate = "01/06/2022"; //create expiration date (end of season)
-
-                //create new season ticket object
-                seasonTicket st = new seasonTicket(stID, accountID, stand, seat, price, age, expirationDate);
+            if (PaymentSelecter.getItemCount() == 0) {
+                //the user has no payment methods therefore they cannot buy ticket
+                PaymentError.setVisible(true);
+            } else if (!(PaymentSelecter.getItemCount() == 0)) {
+                PaymentError.setVisible(false);
                 
-                databaseSQL.addSeasonTicket(st);
+                if (ConfirmButton.isSelected()) {
+                    int stID = databaseSQL.getMaxSTNumber();
+                    int accountID = databaseSQL.getCurrentUser().getAccountID();
+                    String stand = StandSelector.getSelectedItem().toString();
+                    String age = AgeSelector.getSelectedItem().toString();
+                    int price = Integer.parseInt(PriceLabel.getText());
+                    String expirationDate = "01/06/2022"; //create expiration date (end of season)
 
-                Membership mp = new Membership();
-                mp.setSize(370, 390);
-                mp.setVisible(true);
-                this.dispose();
+                    //create new season ticket object
+                    seasonTicket st = new seasonTicket(stID, accountID, stand, seat, price, age, expirationDate);
+
+                    databaseSQL.addSeasonTicket(st);
+
+                    //fix remaining seats
+                    Membership mp = new Membership();
+                    mp.setSize(370, 390);
+                    mp.setVisible(true);
+                    this.dispose();
+                } else if (!ConfirmButton.isSelected()) {
+                    ConfirmError.setVisible(true);
+                }
             }
+            
         } else if (seat.equals("")) {
             SelectSeatLabel.setVisible(true);
         }
@@ -2021,6 +2054,49 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         
     }//GEN-LAST:event_StandSelectorItemStateChanged
 
+    private void AgeSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgeSelectorActionPerformed
+        //if the user has selected a ticket, they can change the age of the ticket holder
+        if (seatCounter == 0) {
+            //cannot change the price of the ticket as there is no ticket
+        } else if (seatCounter == 1) {
+            
+            String seat = seatNumber;
+            String age = AgeSelector.getSelectedItem().toString();
+            
+            //set new price of season ticket using algorithm
+            int stPrice = priceCalculator(seat, age);
+            System.out.println("New Price: " + stPrice);
+            PriceLabel.setText(Integer.toString(stPrice));
+        }
+    }//GEN-LAST:event_AgeSelectorActionPerformed
+
+    public static int priceCalculator(String seat, String age) {
+        int seatNo = Integer.parseInt(seat);
+        int ageNumber = 0;
+        int distanceCost = 0;
+
+        //get age multiplier
+        if (age.equals("Adult")) {
+            ageNumber = 3;
+        } else if (age.equals("Senior") || age.equals("Student")) {
+            ageNumber = 2;
+        } else if (age.equals("Child")) {
+            ageNumber = 1;
+        }
+
+        //get seat distance multiplier
+        if (seatNo <= 20) {
+            distanceCost = 8;
+        } else if (seatNo >= 21 && seatNo <= 60) {
+            distanceCost = 6;
+        } else if (seatNo >= 61 && seatNo <= 100) {
+            distanceCost = 4;
+        }
+
+        int price = (50 * distanceCost) + (15 * ageNumber);
+        return price;
+    }
+    
     public static int seatCounter = 0;
     public static String seatNumber = "";
 
@@ -2039,7 +2115,8 @@ public class BuySeasonTicket extends javax.swing.JFrame {
                 seatNumber = seat.getText(); //sets global variable to the number of the selected seat
 
                 //set price of ticket using algorithm
-                int stPrice = seasonTicketPriceCalculator(seat, age);
+                int stPrice = priceCalculator(seatNumber, age);
+                System.out.println("\nPrice of Season Ticket: " + stPrice);
                 PriceLabel.setText(Integer.toString(stPrice));
                 SelectSeatLabel.setVisible(false);
             }
@@ -2055,34 +2132,6 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         }
     }
 
-    public static int seasonTicketPriceCalculator(JButton seat, String age) {
-//        String age = AgeSelector.getSelectedItem().toString();
-        int seatNumber = Integer.parseInt(seat.getText());
-        int ageNumber = 0;
-        int distanceCost = 0;
-
-        //get age multiplier
-        if (age.equals("Adult")) {
-            ageNumber = 3;
-        } else if (age.equals("Senior") || age.equals("Student")) {
-            ageNumber = 2;
-        } else if (age.equals("Child")) {
-            ageNumber = 1;
-        }
-
-        //get seat distance multiplier
-        if (seatNumber <= 20) {
-            distanceCost = 8;
-        } else if (seatNumber >= 21 && seatNumber <= 60) {
-            distanceCost = 6;
-        } else if (seatNumber >= 61 && seatNumber <= 100) {
-            distanceCost = 4;
-        }
-
-        int price = (50 * distanceCost) + (15 * ageNumber);
-        return price;
-    }
-
     public void setPaymentChoices() {
         //creating an arraylist of all the user's card details
         int userID = databaseSQL.getCurrentUser().getAccountID();
@@ -2091,8 +2140,10 @@ public class BuySeasonTicket extends javax.swing.JFrame {
         //set array of user's card numbers the size of the ammount of cards they have
         String[] paymentOptions = new String[paymentList.size()];
 
+        System.out.println("\nUser's payment methods: ");
         for (int i = 0; i < paymentList.size(); i++) {
             paymentOptions[i] = paymentList.get(i).getCardNumber();
+            System.out.println(paymentList.get(i));
         }
 
         //set dropdown to array of card numbers
@@ -2139,6 +2190,8 @@ public class BuySeasonTicket extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JButton BuyButton;
     private javax.swing.JCheckBox ConfirmButton;
+    private javax.swing.JLabel ConfirmError;
+    private javax.swing.JLabel PaymentError;
     private javax.swing.JComboBox<String> PaymentSelecter;
     private javax.swing.JLabel PriceLabel;
     private javax.swing.JButton Seat1;

@@ -279,7 +279,9 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="BuyButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="SelectSeatLabel" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="PaymentError" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConfirmError" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="SelectSeatLabel" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -391,8 +393,12 @@
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="ConfirmError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="PaymentError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="SelectSeatLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ConfirmButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BuyButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1728,6 +1734,9 @@
           <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Adult&quot;, &quot;Child&quot;, &quot;Senior&quot;, &quot;Student&quot; })" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgeSelectorActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -1738,6 +1747,22 @@
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Please select a seat."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="PaymentError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Please add a payment method to your account."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ConfirmError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Please tick confirm to verify your purchase."/>
       </Properties>
     </Component>
   </SubComponents>
