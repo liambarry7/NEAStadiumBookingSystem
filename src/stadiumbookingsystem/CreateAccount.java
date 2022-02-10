@@ -274,7 +274,7 @@ public class CreateAccount extends javax.swing.JFrame {
         //checking users surname
         String userLN = LastNameField.getText();
         boolean ln = false;
-        if (userFN.length() >= 2 && userFN.length() < 22) {
+        if (userLN.length() >= 2 && userLN.length() < 22) {
             //last name is of reasonable length
             ln = true;
         } else {
@@ -316,7 +316,7 @@ public class CreateAccount extends javax.swing.JFrame {
         
         //checking users phone number
         String userPN = PhoneNumberField.getText();
-        boolean pn;
+        boolean pn = false;
         Pattern rep3 = Pattern.compile("^(\\+44\\s?7\\d{3}|\\(?07\\d{3}\\)?)\\s?\\d{3}\\s?\\d{3}$");
         //https://regexlib.com/(X(1)A(KrmDGblf1JAYpkRP9Oklw7ve8fCivQXgXiDpkXO098d8HEQOmj_AqWgV_Om_U01jwJ4xQTEyvMcPODty0wDg8jNC_TJ3_9iUr9
         //_AmxLFRtNDnbajUraYaYvzn6b1ZSJXToc4cTfTtItuAalvHfooE6e2yabyD5su7rnczF-FtuCHulhZNCsYtVYujdGstBx20))/REDetails.aspx?regexp_id=592
